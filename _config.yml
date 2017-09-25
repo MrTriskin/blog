@@ -4,9 +4,9 @@
 # ---------------------------------------------------------------
 
 # Site
-title: Boibee
-subtitle: this is a subtitle
-description:  and this is description
+title: Boibee Bee Bee Bee
+subtitle: All I want is just the Simple Life with you. Sice Sept.23 2017.
+description:  Hedwig|波先生 just a simple man with naive thoughts.
 author: Hedwig
 # Support language: de, en, fr-FR, id, ja, ko, pt-BR, pt, ru, zh-Hans, zh-hk, zh-tw
 language: en
@@ -14,8 +14,8 @@ date_format: '%Y-%m-%d'
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com' and baseurl as '/child'
-url:
-baseurl:
+url:  https://mrtriskin.github.io
+baseurl:  /blog
 permalink: pretty
 
 # Pagination
