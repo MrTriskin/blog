@@ -28,7 +28,7 @@ return [0, 1].
 **My Solution:** 
 
 Basically, my approach belongs to **Brute Force** with Time complexity $O(n^2)$ and Space complexity $O(1)$. The instance test runtime is **4932 ms** and memory usage is **13.7 MB**.   
-```
+```py
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         for i, n in enumerate(nums):
@@ -39,7 +39,7 @@ class Solution:
 **Recomended Solution:**
 
 By utilizing **Dictionary**, this solution only walk through the whole list once to obtain the answer, which means Time complexity will be $O(n)$ with look up cost $O(1)$ and Space complexity is $O(n)$. The instance test runtime is **48 ms** and memory usage is **14 MB**.
-```
+```py
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         h = {}
