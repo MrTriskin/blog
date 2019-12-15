@@ -27,7 +27,7 @@ return [0, 1].
 ```
 **My Solution:** 
 
-Basically, my approach belongs to **Brute Force** with Time complexity $O(n^2)$ and Space complexity $O(1)$. The instance test runtime is **4932 ms** and memory usage is **13.7 MB**.   
+Basically, my approach belongs to **Brute Force** with Time complexity $$O(n^2)$$ and Space complexity $O(1)$. The instance test runtime is **4932 ms** and memory usage is **13.7 MB**.   
 ```py
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
