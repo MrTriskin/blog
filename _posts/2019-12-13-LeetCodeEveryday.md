@@ -10,7 +10,7 @@ To keep practicing and try not to be left behind, I will continue to update my w
 
 打算在这里记录我的LeetCode佛系刷题生涯，我会在这里贴我自己的解答（python3）以及同语言解答中我认为比较推荐的答案。我本人的代码能力实在是不怎么样，会写出不忍直视的憨批算法，但是无所谓了，我感觉没人会看的，哈哈哈哈哈哈。这篇博客的主要以纪录为主，方便我以后回顾。以上。
 
-## Two Sum [Easy]
+# Two Sum [Easy]
 ```
 Given an array of integers, return indices of the two numbers such that they add up to a specific target.
 
@@ -27,7 +27,7 @@ return [0, 1].
 ```
 **My Solution:** 
 
-Basically, my approach belongs to **Brute Force** with Time complexity **$O(n^2)$** and Space complexity **$O(1)$**. The instance test runtime is **4932 ms** and memory usage is **13.7 MB**.   
+Basically, my approach belongs to **Brute Force** with Time complexity $O(n^2)$ and Space complexity $O(1)$. The instance test runtime is **4932 ms** and memory usage is **13.7 MB**.   
 ```
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
@@ -38,7 +38,7 @@ class Solution:
 ```
 **Recomended Solution:**
 
-By utilizing **Dictionary**, this solution only walk through the whole list once to obtain the answer, which means Time complexity will be **$O(n)$** with look up cost **$O(1)$** and Space complexity is **$O(n)$**. The instance test runtime is **48 ms** and memory usage is **14 MB**.
+By utilizing **Dictionary**, this solution only walk through the whole list once to obtain the answer, which means Time complexity will be $O(n)$ with look up cost $O(1)$ and Space complexity is $O(n)$. The instance test runtime is **48 ms** and memory usage is **14 MB**.
 ```
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
