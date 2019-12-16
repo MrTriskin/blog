@@ -51,7 +51,7 @@ class Solution:
                 return [h[n], i]
 ```
 
-## Add Two Numbers
+# Add Two Numbers
 
 ```
 You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
@@ -128,3 +128,81 @@ class Solution:
             answer.next = self.addTwoNumbers(l1, l2)    
         return answer
 ```
+
+# Longest Substring Without Repeating Characters
+```
+Given a string, find the length of the longest substring without repeating characters.
+
+输入一个string，要求输出str中最长的不重复sub str的长度。
+```
+**Example:**
+```
+Input: "abcabcbb"
+Output: 3 
+Explanation: The answer is "abc", with the length of 3. 
+```
+**My Solution:**
+
+The instance solution test runtime is **88 ms** and memory usage is **12.8 MB**.
+
+```py
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        lstr = 0
+        tmp = {}
+        que = []
+        for ind, c in enumerate(s):
+            if tmp.get(c) == None:
+                tmp[c] = ind
+                que.append(c)
+            else:
+                while tmp.get(c) != None and len(que) != 0:
+                    del tmp[que.pop(0)]
+                tmp[c] = ind
+                que.append(c)
+            lstr = max(lstr, len(tmp.keys()))
+        return(lstr)
+```
+**Recomended Solution:**
+
+This solution tracked the **start pointer** and the **end pointer** of the longest sub string, with test runtime **52 ms** and memory usage **12.7 MB**. 
+
+```py
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        
+        if len(s) == 0:
+            return 0
+        map = {}
+        max_length = start = 0
+        
+        for i in range(len(s)):
+            if s[i] in map and start <= map[s[i]]:
+                start = map[s[i]] + 1
+                
+            else:
+                max_length = max(max_length, i - start + 1)
+            map[s[i]] = i
+        return(max_length)
+```
+
+<!-- # Title
+```
+description
+```
+**Example:**
+```
+
+```
+**My Solution:**
+
+The instance solution test runtime is **60 ms** and memory usage is **12.8 MB**.
+
+```py
+```
+**Recomended Solution:**
+
+This solution is **recursive** with test runtime **68 ms** and memory usage **12.7 MB**.
+
+```py
+``` -->
