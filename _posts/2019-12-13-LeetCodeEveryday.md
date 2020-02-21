@@ -186,6 +186,91 @@ class Solution:
         return(max_length)
 ```
 
+# Longest Palindromic Substring 
+```
+Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
+
+输入一个string，要求输出str中最长回文结构，若有多个会问return第一个（扩展到return全部也大同小异）。
+```
+**Example:**
+```
+Input: "babad"
+Output: "bab"
+Note: "aba" is also a valid answer.
+```
+**My Solution:**
+
+The instance solution test runtime is **3368 ms** and memory usage is **12.7 MB**.
+
+```py
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        dic = {}
+        longest_palindromic = ""
+        for ind, cha in enumerate(s):
+            if dic.__contains__(cha):
+                for cind in dic[cha]:
+                    temp = s[cind:ind+1]
+                    is_pali = True
+                    if temp[::-1] != temp:
+                        is_pali = False
+                    if is_pali:
+                        pali = temp
+                    else:
+                        pali = cha
+                    if len(longest_palindromic) < len(pali):
+                        longest_palindromic = pali
+                dic[cha].append(ind)
+            else:
+                dic[cha] = [ind]
+                pali = cha
+                if len(longest_palindromic) < len(pali):
+                        longest_palindromic = pali
+        return(longest_palindromic)
+```
+**Recomended Solution:**
+
+This approach uses **Dynamic Programming**, with test runtime **4908 ms** and memory usage **21.5 MB**. 
+
+```py
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        
+        if len(s) == 0:
+            return 0
+        map = {}
+        max_length = start = 0
+        
+        for i in range(len(s)):
+            if s[i] in map and start <= map[s[i]]:
+                start = map[s[i]] + 1
+                
+            else:
+                max_length = max(max_length, i - start + 1)
+            map[s[i]] = i
+        return(max_length)
+```
+Runtime **964 ms** and memory usage **12.6 MB**. 
+How made winds :D.
+
+优美简洁，又快又好的代码orz。
+
+```py
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        p = ''
+        for i in range(len(s)):
+            p1 = self.get_palindrome(s, i, i+1)
+            p2 = self.get_palindrome(s, i, i)
+            p = max([p, p1, p2], key=lambda x: len(x))
+        return p
+    
+    def get_palindrome(self, s: str, l: int, r: int) -> str:
+        while l >= 0 and r < len(s) and s[l] == s[r]:
+            l -= 1
+            r += 1
+        return s[l+1:r]
+```
 <!-- # Title
 ```
 description
