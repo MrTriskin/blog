@@ -271,6 +271,74 @@ class Solution:
             r += 1
         return s[l+1:r]
 ```
+# ZigZag Conversion
+```
+The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+
+输入字符串str以及行数numRows，将str的每个字符以z字形排列并以行顺序输出。
+```
+**Example:**
+```
+Input: s = "PAYPALISHIRING", numRows = 4
+Output: "PINALSIGYAHRPI"
+Explanation:
+
+P     I    N
+A   L S  I G
+Y A   H R
+P     I
+```
+**My Solution:**
+
+The instance solution test runtime is **52 ms** and memory usage is **12.8 MB**. Time complexity **O(n)** 
+
+其实重点就在于找到方向折返的判断条件。
+
+```py
+class Solution:
+    def convert(self, s: str, numRows: int) -> str:
+        output = ""
+        rows = []
+        for i in range(numRows):
+            rows.append("")
+        ind = 0
+        indicator = 1
+        for k in s:
+            rows[ind] += k
+            if numRows > 1:
+                ind += indicator
+            if ind == numRows or ind == -1:
+                indicator = -indicator
+                ind += 2*indicator
+        for j in range(numRows):
+            output += rows[j]
+        return output
+```
+**Recomended Solution:**
+
+这个算法思路和我的本质上是一致的，但是比我的优美，不需要判断numRows=1的这种情况。
+
+```py
+def convert(self, s: str, numRows: int) -> str:
+        if numRows == 1 or numRows >= len(s):
+            return s
+        
+        row, step = 0, 0
+        res = [''] * len(s)
+        
+        for c in s:
+            res[row] += c
+            
+            if row == 0:
+                step = 1
+            elif row == numRows - 1:
+                step = -1
+                
+            row += step
+        
+        return "".join(res)
+```
+
 <!-- # Title
 ```
 description
