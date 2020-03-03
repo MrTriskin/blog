@@ -339,6 +339,78 @@ def convert(self, s: str, numRows: int) -> str:
         return "".join(res)
 ```
 
+# Reverse Integer
+```
+Given a 32-bit signed integer, reverse digits of an integer.
+```
+**Example:**
+```
+Input: 123
+Output: 321
+
+Input: -123
+Output: -321
+
+Input: 120
+Output: 21
+```
+**My Solution:**
+
+The instance solution test runtime is **28 ms** and memory usage is **12.7 MB**.
+
+其实基本想法就是每次余十除十，要特别注意的地方在于判断是否超过32-bit要在reverse之后判断。
+
+```py
+class Solution:
+    def reverse(self, x: int) -> int:
+        neg = int(x) < 0
+        out = 0
+        if neg:
+            indi = -1
+            x = -x
+        else:
+            indi = 1
+        while x >= 10:
+            tail = x % 10
+            out = out * 10 + tail
+            x = (x - tail)/10
+        out = int(indi * (out * 10 + x))
+        if (out < -(2 ** 31)) or (out >= (2 ** 31)):
+            out = 0
+        return out
+```
+**Recomended Solution:**
+
+附上别人的优美代码。我一辈子也想不起来用**lambda**。
+
+```py
+class Solution(object):
+    
+    def reverse(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        
+        order = lambda x: 0 if x == 0 else int(math.log(x, 10))
+        sign = lambda x : 1 if (x > 0) else -1  
+                                            
+        num_sign = sign(x) 
+        x = abs(x) 
+        num_order = order(x)  
+        answer = 0                                                    
+        
+        while num_order >= 0:
+            last_num = x % 10 
+            x = x // 10
+            answer += last_num * 10 ** num_order
+            num_order -= 1
+            if not -2 ** 31 <= answer <= 2 ** 31 - 1:
+                return 0
+    
+        return answer * num_sign
+```
+
 <!-- # Title
 ```
 description
